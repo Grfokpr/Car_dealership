@@ -1,20 +1,8 @@
-from rest_framework import serializers
-from rest_framework.validators import UniqueValidator
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 
-class UserSerializer(serializers.ModelSerializer):
+class CustomUser(AbstractUser):
 
-    username = serializers.CharField(validators=[UniqueValidator(queryset=User.objects.all())])
-    email = serializers.EmailField(required=True,validators=[UniqueValidator(queryset=User.objects.all())])
-    password = serializers.CharField(min_length=8,required=True)
-
-    def create(self, state):
-        user = User.objects.create_user(state['username'],state['email'],state['password'])
-        return user
-
-    class Meta():
-        model = User
-        fields = ('id','username','email', 'password')
-
-
-# Create your models here.
+    username = models.CharField(blank=True, max_length=255, unique=True)
+    email = models.EmailField(blank=True, max_length=255)
+    password = models.CharField(blank=True, max_length=255)
