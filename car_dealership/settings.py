@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'django.contrib.sites',
+    'dealership'
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'

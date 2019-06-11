@@ -6,3 +6,4 @@ from . import serializers
 class UserCreate(generics.ListCreateAPIView):
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
+
